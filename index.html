@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olka Interior | Custom Furniture & Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#111827',
+                        kunyit: '#ffd400',
+                    }
+                }
+            }
+        }
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(17, 24, 39, 0.7), rgba(3, 7, 18, 1));
+        }
+        .dark .hero-gradient {
+            background: linear-gradient(to bottom, rgba(17, 24, 39, 0.8), rgba(3, 7, 18, 1));
+        }
+
+        .gray-glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-img { object-position: center 30%; }
+        
+        .btn-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-hover:hover { transform: translateY(-2px); }
+
+        .bg-kunyit { background-color: #eab308; }
+        .hover-bg-kunyit:hover { background-color: #ca8a04; }
+
+        .nav-link { 
+        position: relative; 
+        cursor: pointer; 
+        color: white; /* Warna default teks */
+        transition: color 0.3s ease; /* Transisi halus untuk warna teks */
+        }
+        /* Menghilangkan kontrol UI Google Maps yang tidak perlu agar terlihat bersih */
+        iframe {
+            filter: contrast(1.1) saturate(1.2);
+        }
+        
+        /* Dark mode filter jika website Anda sedang dalam mode gelap */
+        .dark iframe {
+            filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%);
+        }
+        /* Garis Bawah (Underline) */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: rgba(255, 193, 0); /* Warna kuning */
+            transition: width 0.3s ease;
+        }
+        .nav-link{
+            color:#374151; /* gray-700 */
+            transition:all .3s;
+        }
+
+        .dark .nav-link{
+            color:#e5e7eb; /* gray-200 */
+        }
+
+        .nav-link:hover{
+            color:#f59e0b; /* kuning */
+        }
+        /* Saat Kursor Diarahkan (Hover) */
+        .nav-link:hover {
+            color: rgba(255, 193, 0); /* Teks berubah jadi kuning */
+        }
+        .nav-link:hover::after { 
+            width: 100%; /* Garis muncul */
+        }
+
+            /* Dropdown Items Styling */
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #94a3b8;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(255, 193, 0, 0.1);
+            color: rgba(255, 193, 0, 1);
+            padding-left: 25px; /* Efek geser sedikit saat hover */
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Animasi panah kecil agar ikut kuning saat di-hover */
+        .group:hover .nav-link svg {
+            color: rgba(255, 193, 0, 1);
+        }
+        .group:hover .nav-link {
+            color: rgba(255, 193, 0, 1);
+        }
+        
+        .group:hover .nav-link::after {
+            width: 100%;
+        }
+
+        .group:hover .nav-link svg {
+            color: rgba(255, 193, 0, 1);
+            transform: rotate(180deg);
+        }
+        .text-outline {
+            -webkit-text-stroke: 1px currentColor;
+            color: transparent;
+        }
+
+        /* Project Card Animations */
+        .project-card .project-overlay {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        .project-card:hover .project-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .project-card img {
+            transition: transform 0.7s ease;
+        }
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* SPA Transitions */
+        .page-view {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .page-hidden {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Hide scrollbar */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body { background-color: #0f172a; }
+        .testimonial-card {
+            background-color: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 24px;
+        }
+        /* Mengatasi potongan pada slider */
+        .slider-container {
+            padding: 20px;
+            margin: -20px;
+            overflow: visible !important;
+        }
+         .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            overflow-x: auto;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+        nav {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+        }
+
+        header {
+            min-height: 82vh;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+        }
+
+        header h1 {
+            font-size: 2.8rem !important;
+            line-height: 0.95 !important;
+        }
+
+        header p {
+            font-size: 0.95rem !important;
+            line-height: 1.7 !important;
+        }
+
+        section {
+            scroll-margin-top: 90px;
+        }
+
+
+        #modal-wedding::-webkit-scrollbar {
+        width: 5px;
+        }
+        #modal-wedding::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        #modal-wedding::-webkit-scrollbar-thumb {
+            background: #eab308; /* Warna Kuning Olka */
+            border-radius: 10px;
+        }
+
+        #about,
+        #projects,
+        #testimony,
+        #workflow,
+        footer {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+        }
+
+        #about {
+            padding-top: 72px !important;
+            padding-bottom: 72px !important;
+            gap: 40px !important;
+        }
+
+        #about img {
+            height: 320px !important;
+            border-radius: 28px !important;
+        }
+
+        #workflow {
+            padding-top: 72px !important;
+            padding-bottom: 72px !important;
+        }
+
+        #workflow .grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 14px !important;
+        }
+
+        #workflow .group {
+            padding: 20px !important;
+        }
+
+        #projects {
+            padding-top: 72px !important;
+            padding-bottom: 72px !important;
+        }
+
+        .project-card {
+            border-radius: 24px !important;
+        }
+
+        .project-card .project-overlay {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            padding: 24px !important;
+        }
+
+        #testimony {
+            padding-top: 72px !important;
+            padding-bottom: 72px !important;
+        }
+
+        #testi-slider {
+            gap: 16px !important;
+            padding-top: 8px !important;
+            padding-bottom: 8px !important;
+        }
+
+        #testi-slider > div {
+            width: 85vw !important;
+            min-width: 85vw !important;
+            padding: 28px 22px !important;
+            border-radius: 24px !important;
+        }
+
+        #page-collections {
+            padding-top: 72px !important;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+        }
+
+        #page-collections h2 {
+            font-size: 2.6rem !important;
+            line-height: 1 !important;
+        }
+
+        #page-collections .grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+        }
+
+        #page-collections .group {
+            height: 380px !important;
+            border-radius: 28px !important;
+        }
+
+        footer {
+            padding-top: 72px !important;
+            padding-bottom: 32px !important;
+        }
+
+        footer .max-w-7xl {
+            gap: 40px !important;
+        }
+
+        footer .text-4xl {
+            font-size: 1.8rem !important;
+        }
+
+        @keyframes slide-down {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-down {
+            animation: slide-down 0.3s ease-out forwards;
+        }
+    }
+
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-950 text-gray-800 dark:text-gray-200 transition-colors duration-500 overflow-x-hidden antialiased">
+    
+    <!-- DARK MODE TOGGLE BUTTON -->
+    <button id="theme-toggle" class="fixed bottom-8 right-8 z-[100] w-14 h-14 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 shadow-2xl flex items-center justify-center hover:scale-110 transition-all active:scale-95 border border-gray-700 dark:border-gray-200">
+        <svg id="theme-toggle-light-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.243 1.757a1 1 0 011.414 0l.707.707a1 1 0 11-1.414 1.414l-.707-.707a1 1 0 010-1.414zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zm-1.757 4.243a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM10 18a1 1 0 01-1-1v-1a1 1 0 112 0v1a1 1 0 01-1 1zm-4.243-1.757a1 1 0 01-1.414 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.414zM2 10a1 1 0 011-1h1a1 1 0 110 2H3a1 1 0 01-1-1zm1.757-4.243a1 1 0 010-1.414l.707-.707a1 1 0 111.414 1.414l-.707.707a1 1 0 01-1.414 0zM10 5a5 5 0 100 10 5 5 0 000-10z"></path></svg>
+        <svg id="theme-toggle-dark-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+    </button>
+
+    <!-- NAVBAR -->
+    <nav class="w-full py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800 shadow-md bg-white dark:bg-gray-900 backdrop-blur-xl transition-colors duration-500">
+        <div class="flex items-center gap-3 min-w-0">
+            <!-- LOGO PNG -->
+            <a href="index.html" href="javascript:void(0)" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="flex items-center gap-3 cursor-pointer">
+                
+                <img src="logo_pt.PNG" alt="Olka Interior Logo" class="w-10 h-10 md:w-12 md:h-12 object-contain dark:brightness-200">
+                
+                <div class="flex flex-col border-l border-gray-300 dark:border-gray-700 pl-3 min-w-0">
+                    <span class="text-sm sm:text-lg md:text-xl font-bold uppercase tracking-tight text-gray-900 dark:text-white leading-none truncate">
+                        Olka Interior
+                    </span>
+                    <span class="text-[9px] uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400 font-medium">
+                        Professional Custom
+                    </span>
+                </div>
+
+            </a>
+        </div>
+
+        <!-- Main Navigation -->
+        <ul class="hidden lg:flex gap-10 text-sm font-medium items-center">
+            <li><a href="#home" onclick="showPage('home')" class=nav-link cursor-pointer>Home</a></li>
+            <!-- PROJECTS DROPDOWN -->
+            <li class="relative group">
+                <a href="#projects" class="nav-link flex items-center gap-1">
+                    Projects
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </a>
+                
+                <!-- Dropdown Desktop -->
+                <ul class="absolute hidden group-hover:block bg-slate-800 w-48 shadow-2xl rounded-lg">
+                    <li><a onclick="showPage('wedding')" class=dropdown-item>Wedding Gallery</a></li>
+                    <li><a onclick="showPage('kitchen')" class=dropdown-item>Kitchen Set</a></li>
+                    <li><a onclick="showPage('room')" class=dropdown-item>Room Set</a></li>
+                    <li><a onclick="showPage('living')" class=dropdown-item>Living Room</a></li>
+                    <li><a onclick="showPage('cosmetic')" class=dropdown-item>Cosmetic Store</a></li>
+                    <li><a onclick="showPage('office')" class=dropdown-item>Lainnya</a></li>
+                </ul>
+            </li>
+            <li><a href="#team" onclick="showPage('team')" class=nav-link cursor-pointer>Our Team</a></li>
+        </ul>
+        
+        <button id="mobile-menu-button" class="lg:hidden text-2xl cursor-pointer text-gray-900 dark:text-white p-2">
+            ☰
+        </button>
+    </nav>
+
+    <!-- NAVBAR MOBILE VERSION (Fix Section) -->
+<div id="mobile-menu" class="lg:hidden hidden fixed top-[73px] left-0 w-full z-40 bg-white dark:bg-[#0f172a] backdrop-blur-xl border-b border-gray-800 shadow-xl transition-all duration-300">
+    <ul class="flex flex-col px-6 py-2 text-sm font-semibold uppercase tracking-widest">
+        
+        <li class="border-b border-gray-800/50">
+            <a href="#home" onclick="showPage('home')" class="w-full flex justify-between items-center py-4 text-gray-700 dark:text-gray-300 hover:text-yellow-500 transition-colors">Home</a>
+        </li>
+        
+        <li class="border-b border-gray-800/50">
+            <button onclick="toggleMobileDropdown()" class="w-full flex justify-between items-center py-4 text-gray-700 dark:text-gray-300 hover:text-yellow-500 transition-colors uppercase tracking-widest font-semibold text-sm">
+                Projects
+                <svg id="mobile-arrow" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+            </button>
+
+            <ul id="mobile-projects-list" class="hidden flex-col bg-gray-100 dark:bg-slate-800 rounded-xl mb-4 overflow-hidden shadow-inner animate-slide-down">
+                <li><a onclick="showPage('wedding')" class="block py-3 px-6 text-xs text-gray-700 dark:text-gray-300 hover:text-yellow-500">Wedding Gallery</a></li>
+                <li><a onclick="showPage('kitchen')" class="block py-3 px-6 text-xs text-gray-700 dark:text-gray-300 hover:text-yellow-500">Kitchen Set</a></li>
+                <li><a onclick="showPage('room')" class="block py-3 px-6 text-xs text-gray-700 dark:text-gray-300 hover:text-yellow-500">Room Set</a></li>
+                <li><a onclick="showPage('living')" class="block py-3 px-6 text-xs text-gray-700 dark:text-gray-300 hover:text-yellow-500">Living Room</a></li>
+                <li><a onclick="showPage('cosmetic')" class="block py-3 px-6 text-xs text-gray-700 dark:text-gray-300 hover:text-yellow-500">Cosmetic Store</a></li>
+                <li><a onclick="showPage('office')" class="block py-3 px-6 text-xs text-gray-700 dark:text-gray-300 hover:text-yellow-500">Lainnya</a></li>
+            </ul>
+        </li>
+        <li class="border-b border-gray-800/50">
+            <a href="#team" onclick="showPage('team')" class="w-full flex justify-between items-center py-4 text-gray-700 dark:text-gray-300 hover:text-yellow-500 transition-colors">Our Team</a>
+        </li>
+    </ul>
+</div>
+
+<main id="main-content">
+<!-- PAGE WEDDING GALLERY -->        
+    <div id="page-wedding" class="page-view page-hidden py-12 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+        <h2 class="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black text-gray-900 dark:text-white tracking-tighter uppercase italic leading-none mb-4">
+            Wedding <span class="text-kunyit">Gallery</span>
+        </h2>
+        <!-- PAGE 1: Wedding Galerry -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9 mt-8 md:mt-16">
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openWedding(['Idaidul_Rembang_Depan.jpg','Idaidul_Rembang_Samping.jpg','Idaidul_Rembang_Kiri.jpg'], 'IDA IDUL', 'Rembang')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Idaidul_Rembang_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">IDA IDUL</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Rembang</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openWedding(['Rafif_Pati_Samping.jpg','Rafif_Pati_Depan.jpg','Rafif_Pati_Cermin.jpg'], 'RAFIF MAKE UP', 'Pati')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Rafif_Pati_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">RAFIF MAKE UP</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Pati</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openWedding(['Selvianovi_Blora_Fiting.jpg','Selvianovi_Blora_Manekin.jpg','Selvianovi_Blora_Wardrob.jpg'], 'SELVIANOVI', 'BLORA')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Selvianovi_Blora_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">SELVIANOVI</p>
+                    <p class="text-black/80 text-xs uppercase">Project - BLORA</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openWedding(['Dwiphasari_1.jpg','Dwiphasari_2.jpg','Dwiphasari_3.jpg'], 'DWIPHASARI', 'TUBAN')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Dwiphasari_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">DWIPHASARI</p>
+                    <p class="text-black/80 text-xs uppercase">Project - TUBAN</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openWedding(['Yumna_MakeUp_Kanan.png','Yumna_MakeUp_Depan.png','Yumna_MakeUp_Kiri.png'], 'YUMNA MAKEUP WEDDING', 'SRAGEN')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Yumna_MakeUp_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Yumana MakeUp Wedding</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Sragen</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openWedding(['NurulAnam_Pati_Depan.png','NurulAnam_Pati_Samping.png','NurulAnam_Pati_Atas.png'], 'NURUL ANAM MAKEUP ARTIST', 'PATI')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="NurulAnam_Pati_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Nurul Anam MakeUp Artist</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Pati</p>
+                </div>
+            </div>
+
+        </div> 
+    </div>
+<!-- PAGE Kitchen Set -->    
+    <div id="page-kitchen" class="page-view page-hidden py-12 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+        <h2 class="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black text-gray-900 dark:text-white tracking-tighter uppercase italic leading-none mb-4">
+            Kitchen <span class="text-kunyit">Set</span>
+        </h2>
+        <!-- PAGE 1: Wedding Galerry -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9 mt-8 md:mt-16">
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openKitchen(['Pak_Imam_Samping.png','Pak_Imam_Dalem.png','Pak_Imam_Depan.png'], 'Mr. I', 'Kudus')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Pak_Imam_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mr. I</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Kudus</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openKitchen(['Bu_Evita_Kanan.jpg','Bu_Evita_Depan.jpg','Bu_Evita_KKanan.jpg'], 'Mrs. E', 'Blora')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Bu_Evita_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. E</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Blora</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openKitchen(['Reddik_Solo_Depan.png','Reddik_Solo_Samping.png','Reddik_Solo_Cover.png'], 'Mr. R', 'Solo')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Reddik_Solo_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mr. R</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Solo</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openKitchen(['Bu_Uswatun_Samping.jpg','Bu_Uswatun_Depan.jpg','Bu_Uswatun_Atap.jpg'], 'Mrs. U', 'Pati')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Bu_Uswatun_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. U</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Pati</p>
+                </div>
+            </div>
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openKitchen([
+                    'Bu_Yani_Samping.jpg','Bu_Yani_Depan.jpg','Bu_Yani_Bar.jpg'
+                ], 'Mrs. Y', 'Rembang')" 
+                class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                       
+                    <img src="Bu_Yani_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. Y</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Rembang</p>
+                </div>
+            </div>
+             
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openKitchen([
+                   'Bu_Fitri_Rembang_Kanan.png','Bu_Fitri_Rembang_Depan.png','Bu_Fitri_Rembang_Dalam.png'
+                ], 'Mrs. F', 'Rembang')" 
+                class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                       
+                    <img src="Bu_Fitri_Rembang_Dalam.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. F</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Rembang</p>
+                </div>
+            </div>
+      
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openKitchen([
+                    'Evita_Blora_Depan.png','Evita_Blora_Samping.png','Evita_Blora_Cover.png'
+                ], 'Mrs. E', 'Tuban')" 
+                class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                       
+                    <img src="Evita_Blora_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. E</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Tuban</p>
+                </div>
+            </div>
+      
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openKitchen([
+                    'Uswatun_Pati_Kanan.png','Uswatun_Pati_Cover.png','Uswatun_Pati_Kiri.png'
+                ], 'Mrs. W', 'Pati')" 
+                class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                      
+                    <img src="Uswatun_Pati_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. W</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Pati</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openKitchen([
+                    'Retno_Kitchen_Cover.png','Retno_Kitchen_Depan.png','Retno_Kitchen_Kiri.png'
+                ], 'Mrs. R', 'Rembang')" 
+                class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                      
+                    <img src="Retno_Kitchen_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. R</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Rembang</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- PAGE Room Set -->    
+    <div id="page-room" class="page-view page-hidden py-12 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+        <h2 class="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black text-gray-900 dark:text-white tracking-tighter uppercase italic leading-none mb-4">
+            Room <span class="text-kunyit">Set</span>
+        </h2>
+
+        <!-- PAGE 1: Room Set -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9 mt-8 md:mt-16">
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openRoom(['Kevin_Rembang_Samping.png','Kevin_Rembang_Belakang.png', 'Kevin_Rembang_Kiri.png'], 'Mr. K', 'Rembang')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Kevin_Rembang_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mr. K</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Rembang</p>
+                </div>
+            </div>
+            
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openRoom([
+                    'Shinta_Anak_1.png','Shinta_Anak_2.png','Shinta_Anak_3.png'
+                ], 'Mrs. S', 'Blora')" 
+                class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                       
+                    <img src="Shinta_Anak_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. S</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Blora</p>
+                </div>
+            </div>
+      
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openRoom([
+                    'Shinta_Anak_4.png','Shinta_Anak_5.png','Shinta_Anak_6.png'
+                ], 'Mrs. S', 'Blora')" 
+                class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                       
+                    <img src="Shinta_Anak_CoverP.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. S</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Blora</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openRoom(['Retno_Rembang_Samping.png','Retno_Rembang_Kanan.png','Retno_Rembang_Depan.png'], 'Mrs. R', 'Rembang')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Retno_Rembang_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. R</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Rembang</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openRoom(['Savitri_Cepu_Belakang.png','Savitri_Cepu_Kiri.png','Savitri_Cepu_Depan.png'], 'Mrs. S', 'Cepu')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Savitri_Cepu_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. S</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Cepu</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openRoom(['Nurul_Pati_Samping.png','Nurul_Pati_Kiri.png','Nurul_Pati_Depan.png'], 'Mrs. N', 'Pati')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Nurul_Pati_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. N</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Pati</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openRoom([
+                    'Benny_Rembang_Kanan.png','Benny_Rembang_Kiri.png','Benny_Rembang_Samping.png'
+                ], 'Mr. B', 'Rembang')" 
+                class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                       
+                    <img src="Benny_Rembang_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mr. B</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Rembang</p>
+                </div>
+            </div>
+             
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openRoom([
+                   'Marsel_Bali_Kanan.png','Marsel_Bali_Kiri.png','Marsel_Bali_Depan.png'
+                ], 'Mr. M', 'Bali')" 
+                class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                       
+                    <img src="Marsel_Bali_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mr. M</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Bali</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openRoom([
+                    'Raka_Rembang_Kiri.png','Raka_Rembang_Kanan.png','Raka_Rembang_Samping.png', 'Raka_Rembang_Samping.png', 'Raka_Rembang_Samping.png'
+                ], 'Mr. R', 'Rembang')" 
+                class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100 scroll-smooth">
+                      
+                    <img src="Raka_Rembang_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mr. R</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Rembang</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+<!-- PAGE Living Room -->    
+    <div id="page-living" class="page-view page-hidden py-12 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+        <h2 class="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black text-gray-900 dark:text-white tracking-tighter uppercase italic leading-none mb-4">
+            Living <span class="text-kunyit">Room</span>
+        </h2>
+         <!-- PAGE 1: Room Set -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9 mt-8 md:mt-16">
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openLiving(['Evita_Living_Samping.jpg','Evita_Living_Kiri.jpg','Evita_Living_Bawah.jpg'], 'Mrs. E', 'Blora')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Evita_Living_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. E</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Blora</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openLiving(['Sendy_Rembang_Depan.png','Sendy_Rembang_Samping.png','Sendy_Rembang_Atas.png'], 'Mr. S', 'Rembang')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Sendy_Rembang_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mr. S</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Rembang</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openLiving(['Evita_Living_Kiri.png','Evita_Living_Cover.png','Evita_Living_Depan.png'], 'Mrs. E', 'Tuban')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Evita_Living_Cover.png" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. E</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Tuban</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openLiving(['Yani_Living_Depan.jpg','Yani_Living_Samping.jpg','Yani_Living_Kiri.jpg'], 'Mrs. Y', 'Rembang')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Yani_Living_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. Y</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Rembang</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openLiving(['Kevin_Living_Kanan.jpg','Kevin_Living_Samping.jpg','Kevin_Living_Kiri.jpg'], 'Mr. K', 'Rembang')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Kevin_Living_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mr. K</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Rembang</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openLiving(['Fitri_Living_Depan.jpeg','Fitri_Living_Samping.jpeg','Fitri_Living_Kanan.jpeg'], 'Mrs. F', 'Rembang')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Fitri_Living_Cover.jpeg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">Mrs. F</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Rembang</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+<!-- PAGE Kosmetik -->    
+
+    <div id="page-cosmetic" class="page-view page-hidden py-12 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+        <h2 class="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black text-gray-900 dark:text-white tracking-tighter uppercase italic leading-none mb-4">
+            Cosmetic <span class="text-kunyit">Store</span>
+        </h2>
+         <!-- PAGE 1: TOKO KOSMETIK -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9 mt-8 md:mt-16">
+           
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openCosmetic(['MFI_Rembang_Samping.jpg','MFI_Rembang_Depan.jpg','MFI_Rembang_Tengah.jpg'], 'MFI BEAUTY', 'REMBANG')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="MFI_Rembang_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">MFI BEAUTY</p>
+                    <p class="text-black/80 text-xs uppercase">Project - REMBANG</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openCosmetic(['MFI_Juwana_Samping.jpg','MFI_Juwana_Tengah.jpg','MFI_Juwana_Depan.jpg'], 'MFI BEAUTY', 'Juwana')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="MFI_Juwana_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">MFI BEAUTY</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Juwana</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openCosmetic(['MFI_Blora_Dalem.jpg','MFI_Blora_Tengah.jpg','MFI_Blora_Depan.jpg'], 'MFI BEAUTY', 'BLORA')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="MFI_Blora_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">MFI BEAUTY</p>
+                    <p class="text-black/80 text-xs uppercase">Project - BLORA</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openCosmetic(['Fatimah_Cepu_Depan.jpg','Fatimah_Cepu_Samping.jpg','Fatimah_Cepu_Atas.jpg'], 'TANJUNG GLOW UP', 'CEPU')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Fatimah_Cepu_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">TANJUNG GLOW UP</p>
+                    <p class="text-black/80 text-xs uppercase">Project - CEPU</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+<!-- PAGE Lain Lain -->    
+    <div id="page-office" class="page-view page-hidden py-12 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+        <h2 class="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black text-gray-900 dark:text-white tracking-tighter uppercase italic leading-none mb-4">
+            Lain <span class="text-kunyit">Lain</span>
+        </h2>
+
+        <!-- PAGE 1: TOKO KOSMETIK -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9 mt-8 md:mt-16">
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openOffice(['Kantor_Jefri_Depan.jpg','Kantor_Jefri_Samping.jpg','Kantor_Jefri_Kanan.jpg'], 'CV UKIR SARI JAYA ARGO', 'JATIROGO')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="Kantor_Jefri_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">CV UKIR SARI JAYA ARGO</p>
+                    <p class="text-black/80 text-xs uppercase">Project - JATIROGO</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openOffice(['MFI_Office_Samping.jpg','MFI_Office_Tengah.jpg','MFI_Office_Kanan.jpg'], 'MFI OFFICE', 'REMBANG')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="MFI_Office_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">MFI OFFICE</p>
+                    <p class="text-black/80 text-xs uppercase">Project - Rembang</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openOffice(['MFI_Meeting_Samping.jpg','MFI_Meeting_Depan.jpg','MFI_Meeting_Atas.jpg'], 'MFI MEETING ROOM', 'REMBANG')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="MFI_Meeting_Cover.jpg" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">MFI MEETING ROOM</p>
+                    <p class="text-black/80 text-xs uppercase">Project - REMBANG</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col group overflow-hidden">
+                <div onclick="openOffice(['LP3IA_Lab_Depan.JPG','LP3IA_Lab_Samping.JPG','LP3IA_Lab_Kiri.JPG'], 'LP3IA', 'REMBANG')" class="relative cursor-pointer overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img src="LP3IA_Lab_Cover.JPG" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="bg-yellow-400 p-6 shadow-lg">
+                    <p class="text-black text-sm font-black uppercase">LP3IA</p>
+                    <p class="text-black/80 text-xs uppercase">Project - REMBANG</p>
+                </div>
+            </div>
+
+         </div>
+    </div>
+
+</main>
+        
+        <!-- PAGE 1: HOME -->
+
+        <div id="page-home" class="page-view">
+            <!-- HEADER -->
+            <header id="home" class="relative min-h-[90vh] w-full flex items-center justify-center text-center px-6 overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    <img src="bd.png" class="w-full h-full object-cover grayscale opacity-40 dark:opacity-10 hero-img">
+                    <div class="absolute inset-0 bg-white/70 dark:bg-black/40"></div>
+                </div>
+                <div class="relative z-10 max-w-4xl mx-auto">
+                    <span class="text-[10px] font-bold tracking-[0.5em] text-yellow-500 dark:text-yellow-400 uppercase mb-4 block">Eksklusif & Presisi</span>
+                    <h1 class="text-4xl sm:text-4xl md:text-7xl font-black mb-6 leading-[0.95] tracking-tighter text-gray-900 dark:text-white">
+                        <span class="text-white-400 dark:text-white-500">MAKE YOUR HOME</span> <br><span class="italic font-light text-yellow-400 dark:text-yellow-500">PARADISE</span>
+                    </h1>
+                    <p class="text-sm sm:text-base md:text-xl mb-10 text-gray-700 dark:text-gray-300 max-w-2xl mx-auto font-light leading-relaxed px-2 sm:px-0">
+                        Berlandaskan integritas dan tanggung jawab penuh, kami berkomitmen menghadirkan kualitas presisi dengan standar tertinggi, menempatkan kepercayaan Anda di pusat setiap karya yang kami ciptakan.
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center w-full max-w-md sm:max-w-none mx-auto">
+                    <!-- Tombol Konsultasi (WhatsApp) -->
+                    <a href="https://wa.me/6282220810660" 
+                    class="btn-hover w-full sm:w-auto bg-yellow-400 hover:bg-yellow-400 text-gray-900 text-xs font-black py-4 px-10 rounded-full shadow-xl flex items-center justify-center gap-2 uppercase tracking-widest transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.06 3.972L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                        </svg>
+                        Konsultasi Gratis
+                    </a>
+                    <!-- Tombol Cara Kerja (Auto-Adapt: Gelap di Light, Terang di Dark) -->
+                    <a href="#workflow" 
+                    class="btn-hover w-full sm:w-auto bg-gray-900 dark:bg-white text-white dark:text-gray-900 border border-transparent text-xs font-bold py-4 px-12 rounded-full shadow-md hover:bg-gray-800 dark:hover:bg-gray-100 flex items-center justify-center uppercase tracking-widest transition-all">
+                        Cara Kerja
+                    </a>
+                </div>
+            </div>
+            </header>
+
+            <!-- ABOUT SECTION -->
+            <section id="about" class="max-w-7xl mx-auto py-24 px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-1 mb-6">
+                        <h2 class="text-4xl md:text-5xl font-black text-gray-900 dark:text-white italic tracking-tighter uppercase leading-none">ABOUT</h2>
+                        <h2 class="text-4xl md:text-5xl font-black text-outline italic tracking-tighter uppercase leading-none text-gray-400 dark:text-yellow-400">US</h2>
+                    </div>
+                    <div class="space-y-6">
+                        <p class="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed font-light max-w-lg">
+                            Olka Interior adalah Perusahaan yang bergerak di bidang jasa design interior dan kontraktor interior yang berfokus pada kualitas, ketetapan pengerjaan serta tanggung jawab terhadap hasil pekerjaan.
+                        </p>
+                         <p class="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed font-light max-w-lg">
+                            Hadir dengan semangat untuk memberikan solusi interior yang tidak hanya estetik tapi juga kuat, fungsional, dan bernilai jangka panjang. Olka Interior telah menangani berbagai proyek mulai dari hunian pribadi, kantor, hingga ruang usaha.
+                        </p>
+                         <p class="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed font-light max-w-lg">
+                            Dengan pengalaman lapangan yang matang serta sistem kerja yang terstruktur, Olka Interior hadir sebagai mitra terpercaya bagi klien yang menginginkan hasil interior yang rapi, presisi, dan dapat dipertanggungjawabkan.
+                        </p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-gray-400/10 dark:bg-white/5 blur-3xl rounded-[40px] opacity-30"></div>
+                    <img src="about.png" class="relative rounded-[40px] shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000 object-cover w-full h-[500px]">
+                </div>
+            </section>
+
+            <!-- WORKFLOW SECTION -->
+            <section id="workflow" class="w-full py-24 bg-gray-50 dark:bg-gray-900/30 px-6 md:px-12 text-center border-y border-gray-100 dark:border-gray-900">
+                <div class="max-w-6xl mx-auto">
+                    <h2 class="text-3xl md:text-5xl font-black mb-16 tracking-tighter text-gray-900 dark:text-white uppercase italic">WORK<span class="text-gray-400 dark:text-yellow-400">FLOW</span></h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                        <div class="group gray-glass p-8 rounded-2xl hover:bg-white dark:hover:bg-gray-800 transition-all shadow-lg border border-gray-200 dark:border-gray-800">
+                            <div class="text-4xl mb-6 group-hover:scale-125 transition-transform">💬</div>
+                            <h5 class="text-[10px] font-black tracking-widest text-gray-400 uppercase mb-2">01</h5>
+                            <p class="text-xs font-black uppercase text-gray-800 dark:text-white tracking-widest">Konsultasi</p>
+                        </div>
+                        <div class="group gray-glass p-8 rounded-2xl hover:bg-white dark:hover:bg-gray-800 transition-all shadow-lg border border-gray-200 dark:border-gray-800">
+                            <div class="text-4xl mb-6 group-hover:scale-125 transition-transform">📐</div>
+                            <h5 class="text-[10px] font-black tracking-widest text-gray-400 uppercase mb-2">02</h5>
+                            <p class="text-xs font-black uppercase text-gray-800 dark:text-white tracking-widest">Survey</p>
+                        </div>
+                        <div class="group gray-glass p-8 rounded-2xl hover:bg-white dark:hover:bg-gray-800 transition-all shadow-lg border border-gray-200 dark:border-gray-800">
+                            <div class="text-4xl mb-6 group-hover:scale-125 transition-transform">🖥️</div>
+                            <h5 class="text-[10px] font-black tracking-widest text-gray-400 uppercase mb-2">03</h5>
+                            <p class="text-xs font-black uppercase text-gray-800 dark:text-white tracking-widest">Design 3D</p>
+                        </div>
+                        <div class="group gray-glass p-8 rounded-2xl hover:bg-white dark:hover:bg-gray-800 transition-all shadow-lg border border-gray-200 dark:border-gray-800">
+                            <div class="text-4xl mb-6 group-hover:scale-125 transition-transform">🫱🏻‍🫲🏻</div>
+                            <h5 class="text-[10px] font-black tracking-widest text-gray-400 uppercase mb-2">04</h5>
+                            <p class="text-xs font-black uppercase text-gray-800 dark:text-white tracking-widest">Deal</p>
+                        </div>
+                        <div class="group gray-glass p-8 rounded-2xl hover:bg-white dark:hover:bg-gray-800 transition-all shadow-lg border border-gray-200 dark:border-gray-800">
+                            <div class="text-4xl mb-6 group-hover:scale-125 transition-transform">🛠️</div>
+                            <h5 class="text-[10px] font-black tracking-widest text-gray-400 uppercase mb-2">05</h5>
+                            <p class="text-xs font-black uppercase text-gray-800 dark:text-white tracking-widest">Produksi</p>
+                        </div>
+                        <div class="group gray-glass p-8 rounded-2xl hover:bg-white dark:hover:bg-gray-800 transition-all shadow-lg border border-gray-200 dark:border-gray-800">
+                            <div class="text-4xl mb-6 group-hover:scale-125 transition-transform">📦</div>
+                            <h5 class="text-[10px] font-black tracking-widest text-gray-400 uppercase mb-2">06</h5>
+                            <p class="text-xs font-black uppercase text-gray-800 dark:text-white tracking-widest">Instalasi</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS PREVIEW -->
+            <section id="projects" class="py-24 px-6 md:px-12 bg-white dark:bg-gray-950">
+                <div class="max-w-7xl mx-auto">
+                    <div class="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                        <div>
+                            <h2 class="text-4xl md:text-6xl font-black text-gray-900 dark:text-white tracking-tighter uppercase italic leading-none mb-4">OUR <span class="text-gray-400 dark:text-yellow-400">PROJECTS</span></h2>
+                            <p class="text-sm font-medium tracking-[0.3em] text-gray-500 uppercase">Portofolio Pekerjaan Kami</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory pb-4 hide-scrollbar">
+                        <div class="project-card relative group overflow-hidden rounded-[32px] aspect-[4/5] cursor-pointer min-w-[280px] md:min-w-[340px] snap-start">
+                            <img src="c1.png" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                            <div class="project-overlay absolute bottom-0 left-0 p-10 w-full">
+                                <span class="text-[9px] font-black tracking-[0.4em] text-white/60 uppercase mb-2 block">Living Room</span>
+                                <h4 class="text-2xl font-bold text-white mb-2 tracking-tight">Mr. A</h4>
+                                <p class="text-xs text-white/50 uppercase tracking-widest font-medium">Rembang</p>
+                            </div>
+                        </div>
+                        <div class="project-card relative group overflow-hidden rounded-[32px] aspect-[4/5] cursor-pointer min-w-[280px] md:min-w-[340px] snap-start">
+                            <img src="k1.png" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                            <div class="project-overlay absolute bottom-0 left-0 p-10 w-full">
+                                <span class="text-[9px] font-black tracking-[0.4em] text-white/60 uppercase mb-2 block">Bedroom</span>
+                                <h4 class="text-2xl font-bold text-white mb-2 tracking-tight">Mrs. S</h4>
+                                <p class="text-xs text-white/50 uppercase tracking-widest font-medium">Rembang</p>
+                            </div>
+                        </div>
+                        <div class="project-card relative group overflow-hidden rounded-[32px] aspect-[4/5] cursor-pointer min-w-[280px] md:min-w-[340px] snap-start">
+                            <img src="d1.png" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                            <div class="project-overlay absolute bottom-0 left-0 p-10 w-full">
+                                <span class="text-[9px] font-black tracking-[0.4em] text-white/60 uppercase mb-2 block">Kitchen Set</span>
+                                <h4 class="text-2xl font-bold text-white mb-2 tracking-tight">Mr. R</h4>
+                                <p class="text-xs text-white/50 uppercase tracking-widest font-medium">Kudus</p>
+                            </div>
+                        </div>
+                        <div class="project-card relative group overflow-hidden rounded-[32px] aspect-[4/5] cursor-pointer min-w-[280px] md:min-w-[340px] snap-start">
+                            <img src="wd2.png" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                            <div class="project-overlay absolute bottom-0 left-0 p-10 w-full">
+                                <span class="text-[9px] font-black tracking-[0.4em] text-white/60 uppercase mb-2 block">Wedding Gallery</span>
+                                <h4 class="text-2xl font-bold text-white mb-2 tracking-tight">Mr. N</h4>
+                                <p class="text-xs text-white/50 uppercase tracking-widest font-medium">Pati</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TESTIMONY SECTION -->
+            <section id="testimony" class="max-w-7xl mx-auto py-24 px-6 md:px-12 text-center overflow-hidden">
+                <h2 class="text-3xl md:text-5xl font-black tracking-tighter text-gray-900 dark:text-white uppercase italic mb-16">
+                    CLIENT <span class="text-gray-400 dark:text-yellow-400">TESTIMONY</span>
+                </h2>
+
+                <div class="relative group">
+                    <!-- PANAH KIRI - Disesuaikan posisinya agar tidak memotong card -->
+                    <button onclick="scrollTesti(-1)"
+                        class="hidden md:flex absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full 
+                        bg-white dark:bg-gray-800 shadow-xl text-gray-900 dark:text-white 
+                        flex items-center justify-center 
+                        opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 border border-gray-200 dark:border-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+
+                    <!-- PANAH KANAN -->
+                    <button onclick="scrollTesti(1)"
+                        class="hidden md:flex absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full 
+                        bg-white dark:bg-gray-800 shadow-xl text-gray-900 dark:text-white 
+                        flex items-center justify-center 
+                        opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 border border-gray-200 dark:border-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+
+                    <!-- SLIDER CONTAINER -->
+                    <!-- Menambahkan py-10 agar saat hover:scale-105, card tidak terpotong di atas/bawah -->
+                    <div id="testi-slider"
+                        class="flex gap-8 overflow-x-auto hide-scrollbar scroll-smooth py-10 px-4 -mx-4">
+
+                         <!-- Card 3 -->
+                        <div class="gray-glass flex-shrink-0 w-[300px] md:w-[350px] p-10 rounded-[2rem] border-t-2 border-gray-200 dark:border-white/20 shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl bg-white/5 backdrop-blur-sm">
+                            <div class="flex justify-center mb-6 text-yellow-500 text-xl">★★★★★</div>
+                            <p class="text-lg text-gray-600 dark:text-gray-300 italic font-light leading-relaxed mb-8">
+                                "Pengerjaannya rapi, ahli di bidangnya. Emang udah sesuai dengan apa yang aku mau"
+                            </p>
+                            <div class="h-px w-12 bg-gray-300 dark:bg-gray-700 mx-auto mb-6"></div>
+                            <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-900 dark:text-white">
+                                Mr. M - Bali
+                            </h5>
+                        </div>
+                        <!-- CARD TEMPLATE -->
+                        <div class="gray-glass flex-shrink-0 w-[300px] md:w-[350px] p-10 rounded-[2rem] border-t-2 border-gray-200 dark:border-white/20 shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl bg-white/5 backdrop-blur-sm">
+                            <div class="flex justify-center mb-6 text-yellow-500 text-xl">★★★★★</div>
+                            <p class="text-lg text-gray-600 dark:text-gray-300 italic font-light leading-relaxed mb-8">
+                                "Pekerjaannya tepat waktu, saya minta satu minggu bisa diselesaikan. Pekerjaannya pun rapi dan sesuai dengan keinginan saya"
+                            </p>
+                            <div class="h-px w-12 bg-gray-300 dark:bg-gray-700 mx-auto mb-6"></div>
+                            <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-900 dark:text-white">
+                                Mrs. H - Rembang
+                            </h5>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="gray-glass flex-shrink-0 w-[300px] md:w-[350px] p-10 rounded-[2rem] border-t-2 border-gray-200 dark:border-white/20 shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl bg-white/5 backdrop-blur-sm">
+                            <div class="flex justify-center mb-6 text-yellow-500 text-xl">★★★★★</div>
+                            <p class="text-lg text-gray-600 dark:text-gray-300 italic font-light leading-relaxed mb-8">
+                                "Untuk hasilnya sangat memuaskan diluar ekspektasi saya, disini tuh pekerjaannya sangat rapi dan tepat waktu"
+                            </p>
+                            <div class="h-px w-12 bg-gray-300 dark:bg-gray-700 mx-auto mb-6"></div>
+                            <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-900 dark:text-white">
+                                Mrs. D - Rembang
+                            </h5>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="gray-glass flex-shrink-0 w-[300px] md:w-[350px] p-10 rounded-[2rem] border-t-2 border-gray-200 dark:border-white/20 shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl bg-white/5 backdrop-blur-sm">
+                            <div class="flex justify-center mb-6 text-yellow-500 text-xl">★★★★★</div>
+                            <p class="text-lg text-gray-600 dark:text-gray-300 italic font-light leading-relaxed mb-8">
+                                "Bagus, sesuai dengan keinginan kita. Overall bagus, dan sesuai dengan target yang sudah ditentukan diawal"
+                            </p>
+                            <div class="h-px w-12 bg-gray-300 dark:bg-gray-700 mx-auto mb-6"></div>
+                            <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-900 dark:text-white">
+                                Mr. I - Juwana
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- PAGE 2: FULL COLLECTIONS (SPA MODE) -->
+        <div id="page-team" class="page-view page-hidden py-10 px-4 md:px-8 max-w-7xl mx-auto min-h-screen">
+            <div class="mb-12 text-center md:text-left">
+                <h2 class="text-4xl md:text-7xl font-black text-gray-900 dark:text-white tracking-tighter uppercase italic leading-none mb-4">
+                    OUR <span class="text-kunyit">TEAM</span>
+                </h2>
+                <div class="h-1 w-20 bg-kunyit mb-6 mx-auto md:mx-0"></div>
+                <p class="text-[10px] md:text-sm font-medium tracking-[0.3em] text-gray-500 uppercase">
+                    Tim Profesional di Balik Setiap Detail
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-10">
+                
+                <div class="group text-center">
+                    <div class="overflow-hidden rounded-2xl md:rounded-[40px] mb-4">
+                        <img src="Founder.PNG"
+                            class="aspect-[3/4] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                    </div>
+                    <h3 class="text-sm md:text-xl font-bold text-gray-900 dark:text-white">Toha</h3>
+                    <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-gray-500 mt-1">Founder</p>
+                </div>
+
+                <div class="group text-center">
+                    <div class="overflow-hidden rounded-2xl md:rounded-[40px] mb-4">
+                        <img src="Keuangan.JPG"
+                            class="aspect-[3/4] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                    </div>
+                    <h3 class="text-sm md:text-xl font-bold text-gray-900 dark:text-white">Dhifa</h3>
+                    <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-gray-500 mt-1">Finance Manager</p>
+                </div>
+
+                <div class="group text-center">
+                    <div class="overflow-hidden rounded-2xl md:rounded-[40px] mb-4">
+                        <img src="Interior Designer.PNG"
+                            class="aspect-[3/4] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                    </div>
+                    <h3 class="text-sm md:text-xl font-bold text-gray-900 dark:text-white">Firda</h3>
+                    <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-gray-500 mt-1">Interior Designer</p>
+                </div>
+
+                <div class="group text-center">
+                    <div class="overflow-hidden rounded-2xl md:rounded-[40px] mb-4">
+                        <img src="Media.PNG"
+                            class="aspect-[3/4] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                    </div>
+                    <h3 class="text-sm md:text-xl font-bold text-gray-900 dark:text-white">Dafa</h3>
+                    <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-gray-500 mt-1">Digital Creative</p>
+                </div>
+
+                <div class="group text-center">
+                    <div class="overflow-hidden rounded-2xl md:rounded-[40px] mb-4">
+                        <img src="Admin.jpeg"
+                            class="aspect-[3/4] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                    </div>
+                    <h3 class="text-sm md:text-xl font-bold text-gray-900 dark:text-white">Imroatus</h3>
+                    <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-gray-500 mt-1"> Admin Project</p>
+                </div>                
+
+                <div class="group text-center">
+                    <div class="overflow-hidden rounded-2xl md:rounded-[40px] mb-4">
+                        <img src="Manager.JPG"
+                            class="aspect-[3/4] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                    </div>
+                    <h3 class="text-sm md:text-xl font-bold text-gray-900 dark:text-white">Tyo</h3>
+                    <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-gray-500 mt-1">Project Manager</p>
+                </div>
+
+                <div class="group text-center">
+                    <div class="overflow-hidden rounded-2xl md:rounded-[40px] mb-4">
+                        <img src="Mandor.PNG"
+                            class="aspect-[3/4] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                    </div>
+                    <h3 class="text-sm md:text-xl font-bold text-gray-900 dark:text-white">Ismail</h3>
+                    <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-gray-500 mt-1">Project Lead</p>
+                </div>
+
+                <div class="group text-center">
+                    <div class="overflow-hidden rounded-2xl md:rounded-[40px] mb-4">
+                        <img src="Mandor_Olka.JPG"
+                            class="aspect-[3/4] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                    </div>
+                    <h3 class="text-sm md:text-xl font-bold text-gray-900 dark:text-white">Ainul</h3>
+                    <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-gray-500 mt-1">Project Lead</p>
+                </div>
+
+                <div class="group text-center">
+                    <div class="overflow-hidden rounded-2xl md:rounded-[40px] mb-4">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800"
+                            class="aspect-[3/4] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                    </div>
+                    <h3 class="text-sm md:text-xl font-bold text-gray-900 dark:text-white">Yenni and Babies</h3>
+                    <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-gray-500 mt-1">Pet Office</p>
+                </div>
+
+                <div class="group text-center">
+                    <div class="overflow-hidden rounded-2xl md:rounded-[40px] mb-4">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800"
+                            class="aspect-[3/4] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                    </div>
+                    <h3 class="text-sm md:text-xl font-bold text-gray-900 dark:text-white">Donat</h3>
+                    <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-gray-500 mt-1">Pet Office</p>
+                </div>
+
+                <div class="group text-center">
+                    <div class="overflow-hidden rounded-2xl md:rounded-[40px] mb-4">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800"
+                            class="aspect-[3/4] w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                    </div>
+                    <h3 class="text-sm md:text-xl font-bold text-gray-900 dark:text-white">Cempluk and Babies</h3>
+                    <p class="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-gray-500 mt-1">Pet Office</p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="kontak" class="w-full bg-gray-50 dark:bg-gray-950 pt-24 pb-12 px-6 md:px-12 border-t border-gray-200 dark:border-gray-900">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-20">
+            <div class="space-y-8">
+                <div class="flex items-center gap-3">
+                    <img src="logo_pt.PNG" class="w-10 h-10 object-contain dark:brightness-200" onerror="this.src='https://via.placeholder.com/50x50'">
+                    <span class="text-2xl font-black text-gray-900 dark:text-white tracking-tighter uppercase italic">Olka Interior</span>
+                </div>
+                <p class="text-white-400 text-xs leading-relaxed uppercase tracking-widest font-bold">
+                    Layanan kustom interior premium dengan spesialisasi gaya minimalis monochrome.
+                </p>
+               <!-- SOCIAL MEDIA SECTION -->
+                <div class="flex gap-4">
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/olka_interior" pageId="_blank" class="w-11 h-11 flex items-center justify-center border border-gray-300 dark:border-gray-700 rounded-full hover:bg-yellow-500 hover:border-yellow-500 hover:text-black transition-all duration-300 group" title="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current text-gray-700 dark:text-gray-300 group-hover:text-black" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/olka.interior" pageId="_blank" class="w-11 h-11 flex items-center justify-center border border-gray-300 dark:border-gray-700 rounded-full hover:bg-yellow-500 hover:border-yellow-500 hover:text-black transition-all duration-300 group" title="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current text-gray-700 dark:text-gray-300 group-hover:text-black" viewBox="0 0 24 24">
+                            <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+                        </svg>
+                    </a>
+
+                    <!-- Email -->
+                    <a href="mailto:olkafurniture@gmail.com" class="w-11 h-11 flex items-center justify-center border border-gray-300 dark:border-gray-700 rounded-full hover:bg-yellow-500 hover:border-yellow-500 hover:text-black transition-all duration-300 group" title="Kirim Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-none stroke-current text-gray-700 dark:text-gray-300 group-hover:text-black" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <!-- Lokasi & Map Column -->
+            <div class="space-y-8">
+                <h4 class="text-white-400 text-2xl leading-relaxed uppercase tracking-widest font-bold">Lokasi Kami</h4>
+                <div class="space-y-4">
+                    <p class="text-white-400 text-xs leading-relaxed uppercase tracking-widest font-bold">
+                        Jl. Blandok Indah, RT 01/RW 01, Plawangan<br>
+                        Kec. Kragan, Kab. Rembang, Jawa Tengah
+                    </p>
+                    
+                    <!-- Integrated Mini Map (Zoomed with Red Pin Marker) -->
+                    <div class="relative w-full h-44 rounded-[2rem] overflow-hidden border border-gray-100 dark:border-gray-800 group shadow-2xl bg-white dark:bg-gray-900">
+                        <iframe 
+                            src="https://www.google.com/maps?q=Olka+Interior+Kragan+Rembang&z=16&t=m&output=embed" 
+                            class="w-full h-full grayscale-[0.2] contrast-[1.1] duration-700 pointer-events-none" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                        
+                        <!-- Lapisan Klik Transparan ke Google Maps Asli -->
+                        <a href="https://maps.app.goo.gl/hE1jzqHt71uXFXw88" 
+                        pageId="_blank" 
+                        class="absolute inset-0 bg-transparent cursor-pointer z-10"
+                        title="Klik untuk navigasi di Google Maps">
+                        </a>
+                            
+                            <!-- Badge Indikator Lokasi (Opsional untuk mempertegas) -->
+                            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/90 dark:bg-black/90 px-4 py-2 rounded-full shadow-lg backdrop-blur-sm border border-gray-200 dark:border-gray-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <p class="text-[9px] font-black uppercase tracking-widest text-gray-900 dark:text-white flex items-center gap-2">
+                                    <span class="w-2 h-2 bg-red-600 rounded-full animate-pulse"></span>
+                                    Kantor Olka Interior
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <h4 class="text-white-400 text-2xl leading-relaxed uppercase tracking-widest font-bold">Contact</h4>
+                    <div class="flex flex-col gap-1">
+                        <!-- Email: Menggunakan tag <a> agar bisa diklik -->
+                        <a href="mailto:olkainteriora@gmail.com" 
+                        class="text-white-400 text-xs leading-relaxed uppercase tracking-widest font-bold">
+                            olkafurniture@gmail.com
+                        </a>
+                        <!-- No Telp: Menggunakan tag <a> agar bisa ditelepon langsung -->
+                        <a href="https://wa.me/6282220810660"  
+                        class="text-white-400 text-xs leading-relaxed uppercase tracking-widest font-bold">
+                            0822 2081 0660
+                        </a>
+                    </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-24 pt-10 border-t border-white-200 dark:border-white-900 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] font-black text-white-400 tracking-[0.6em] uppercase">
+            <span>&copy; 2026 Olka Interior. Crafted with Precision.</span>
+        </div>
+    </footer>
+
+    <script>
+       // SPA Logic
+    function showPage(pageId) {
+        // 1. Sembunyikan semua halaman yang punya class 'page-view'
+        document.querySelectorAll('.page-view').forEach(page => {
+            page.classList.add('page-hidden');
+        });
+
+        // 2. Ambil elemen berdasarkan ID-nya (misal: 'page-home')
+        const targetPage = document.getElementById('page-' + pageId);
+
+        // 3. Cek apakah elemennya ketemu, baru tampilkan
+        if (targetPage) {
+            targetPage.classList.remove('page-hidden');
+        } else {
+            console.error("Halaman dengan ID 'page-" + pageId + "' tidak ditemukan!");
+        }
+
+        // 4. Tutup menu mobile jika ada
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenu) {
+            mobileMenu.classList.add('hidden');
+        }
+    }
+        // Theme Toggle Logic
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        function syncIcons() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleLightIcon.classList.remove('hidden');
+                themeToggleDarkIcon.classList.add('hidden');
+            } else {
+                themeToggleDarkIcon.classList.remove('hidden');
+                themeToggleLightIcon.classList.add('hidden');
+            }
+        }
+        syncIcons();
+
+        themeToggleBtn.addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+            syncIcons();
+        });
+        function scrollTesti(direction){
+            const slider = document.getElementById("testi-slider");
+
+            slider.scrollBy({
+            left: direction * 380,
+            behavior: "smooth"
+            });
+        }
+         // Script Mobile
+         function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) {
+                // Toggle class 'hidden'
+                menu.classList.toggle('hidden');
+                
+                // Opsional: Mencegah scroll body saat menu terbuka
+                if (!menu.classList.contains('hidden')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+        }
+        
+        // FUNGSI TUTUP MENU 
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) {
+                menu.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        function toggleMobileDropdown() {
+            const list = document.getElementById('mobile-projects-list');
+            const arrow = document.getElementById('mobile-arrow');
+            
+            // Toggle class 'hidden'
+            if (list.classList.contains('hidden')) {
+                list.classList.remove('hidden');
+                list.classList.add('flex');
+                arrow.style.transform = 'rotate(180deg)';
+            } else {
+                list.classList.add('hidden');
+                list.classList.remove('flex');
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function openCategory(category, title) {
+            console.log("Navigasi ke Kategori:", category, "| Judul:", title);
+            
+            // Buka halaman utama collections
+            showPage('collections');
+
+            // Scroll ke atas dengan jeda sedikit agar transisi halus
+            setTimeout(() => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }, 200);
+        }
+        function toggleDarkMode(){
+        document.documentElement.classList.toggle("dark")
+        }
+        function openGallery() {
+        document.getElementById('galleryModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Matikan scroll layar belakang
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryModal').classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Aktifkan kembali scroll
+        }
+
+        // Menutup jika area di luar gambar diklik
+        window.onclick = function(event) {
+            let modal = document.getElementById('galleryModal');
+            if (event.pageId == modal) {
+                closeGallery();
+            }
+        }
+    function openWedding(images, name, location) {
+        const container = document.getElementById('wedding-images');
+        const title = document.getElementById('wedding-title');
+
+        // Reset isi
+        container.innerHTML = '';
+
+        // Set judul dinamis
+        title.innerText = `Wedding Gallery - ${name} (${location})`;
+
+        // Loop gambar
+        images.forEach(img => {
+            container.innerHTML += `
+                <img src="${img}" class="w-full h-80 object-cover shadow-2xl border border-white/10">
+            `;
+        });
+
+        // Tampilkan modal
+        document.getElementById('modal-wedding').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeWedding() {
+        document.getElementById('modal-wedding').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Klik luar modal untuk close
+    window.onclick = function(event) {
+        const modal = document.getElementById('modal-wedding');
+        if (event.pageId === modal) {
+            closeWedding();
+        }
+    }
+        
+    function openKitchen(images, name, location) {
+        const container = document.getElementById('kitchen-images');
+        const title = document.getElementById('kitchen-title');
+
+        // Reset isi
+        container.innerHTML = '';
+
+        // Set judul dinamis
+        title.innerText = `Kitchen Set - ${name} (${location})`;
+
+        // Loop gambar
+        images.forEach(img => {
+            container.innerHTML += `
+                <img src="${img}" class="w-full h-80 object-cover shadow-2xl border border-white/10">
+            `;
+        });
+
+        // Tampilkan modal
+        document.getElementById('modal-kitchen').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeKitchen() {
+        document.getElementById('modal-kitchen').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Klik luar modal untuk close
+    window.onclick = function(event) {
+        const modal = document.getElementById('modal-kitchen');
+        if (event.pageId === modal) {
+            closeKitchen();
+        }
+    }
+
+    function openRoom(images, name, location) {
+        const container = document.getElementById('room-images');
+        const title = document.getElementById('room-title');
+
+        // Reset isi
+        container.innerHTML = '';
+
+        // Set judul dinamis
+        title.innerText = `Room Set - ${name} (${location})`;
+
+        // Loop gambar
+        images.forEach(img => {
+            container.innerHTML += `
+                <img src="${img}" class="w-full h-80 object-cover shadow-2xl border border-white/10">
+            `;
+        });
+
+        // Tampilkan modal
+        document.getElementById('modal-room').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeRoom() {
+        document.getElementById('modal-room').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Klik luar modal untuk close
+    window.onclick = function(event) {
+        const modal = document.getElementById('modal-room');
+        if (event.pageId === modal) {
+            closeRoom();
+        }
+    }
+
+
+    function openLiving(images, name, location) {
+        const container = document.getElementById('living-images');
+        const title = document.getElementById('living-title');
+
+        // Reset isi
+        container.innerHTML = '';
+
+        // Set judul dinamis
+        title.innerText = `Living Room - ${name} (${location})`;
+
+        // Loop gambar
+        images.forEach(img => {
+            container.innerHTML += `
+                <img src="${img}" class="w-full h-80 object-cover shadow-2xl border border-white/10">
+            `;
+        });
+
+        // Tampilkan modal
+        document.getElementById('modal-living').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLiving() {
+        document.getElementById('modal-living').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Klik luar modal untuk close
+    window.onclick = function(event) {
+        const modal = document.getElementById('modal-living');
+        if (event.pageId === modal) {
+            closeLiving();
+        }
+    }
+
+    function openCosmetic(images, name, location) {
+        const container = document.getElementById('cosmetic-images');
+        const title = document.getElementById('cosmetic-title');
+
+        // Reset isi
+        container.innerHTML = '';
+
+        // Set judul dinamis
+        title.innerText = `Cosmetic Store - ${name} (${location})`;
+
+        // Loop gambar
+        images.forEach(img => {
+            container.innerHTML += `
+                <img src="${img}" class="w-full h-80 object-cover shadow-2xl border border-white/10">
+            `;
+        });
+
+        // Tampilkan modal
+        document.getElementById('modal-cosmetic').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCosmetic() {
+        document.getElementById('modal-cosmetic').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Klik luar modal untuk close
+    window.onclick = function(event) {
+        const modal = document.getElementById('modal-cosmetic');
+        if (event.pageId === modal) {
+            closeCosmetic();
+        }
+    }
+
+        function openOffice(images, name, location) {
+        const container = document.getElementById('office-images');
+        const title = document.getElementById('office-title');
+
+        // Reset isi
+        container.innerHTML = '';
+
+        // Set judul dinamis
+        title.innerText = `Produk Lainnya - ${name} (${location})`;
+
+        // Loop gambar
+        images.forEach(img => {
+            container.innerHTML += `
+                <img src="${img}" class="w-full h-80 object-cover shadow-2xl border border-white/10">
+            `;
+        });
+
+        // Tampilkan modal
+        document.getElementById('modal-office').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeOffice() {
+        document.getElementById('modal-office').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Klik luar modal untuk close
+    window.onclick = function(event) {
+        const modal = document.getElementById('modal-office');
+        if (event.pageId === modal) {
+            closeOffice();
+        }
+    }
+
+
+</script>
+
+<div id="modal-wedding" 
+     onclick="closeWedding()" 
+     class="fixed inset-0 z-[200] hidden bg-black/95 backdrop-blur-xl overflow-y-auto cursor-pointer">
+    
+    <!-- WRAPPER KONTEN -->
+    <!-- stopPropagation dihapus dari sini agar klik pada judul/area kosong tetap menutup modal -->
+    <div class="min-h-full w-full py-12 px-6 flex flex-col items-center">
+        
+        <!-- JUDUL DINAMIS -->
+        <!-- Klik di sini sekarang akan menutup modal (out) -->
+        <div class="max-w-4xl w-full text-center mb-10">
+            <h2 id="wedding-title" class="text-white text-2xl md:text-4xl font-black uppercase tracking-widest leading-tight"></h2>
+            <div class="h-1 w-20 bg-yellow-500 mx-auto mt-4"></div>
+        </div>
+
+        <!-- CONTAINER GAMBAR -->
+        <div id="wedding-images" class="max-w-5xl w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pb-20">
+            <!-- Gambar akan diisi via JavaScript -->
+        </div>
+    </div>
+</div>
+
+<div id="modal-kitchen" 
+     onclick="closeKitchen()" 
+     class="fixed inset-0 z-[200] hidden bg-black/95 backdrop-blur-xl overflow-y-auto cursor-pointer">
+    
+    <!-- WRAPPER KONTEN -->
+    <!-- stopPropagation dihapus dari sini agar klik pada judul/area kosong tetap menutup modal -->
+    <div class="min-h-full w-full py-12 px-6 flex flex-col items-center">
+        
+        <!-- JUDUL DINAMIS -->
+        <!-- Klik di sini sekarang akan menutup modal (out) -->
+        <div class="max-w-4xl w-full text-center mb-10">
+            <h2 id="kitchen-title" class="text-white text-2xl md:text-4xl font-black uppercase tracking-widest leading-tight"></h2>
+            <div class="h-1 w-20 bg-yellow-500 mx-auto mt-4"></div>
+        </div>
+
+        <!-- CONTAINER GAMBAR -->
+        <div id="kitchen-images" class="max-w-5xl w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pb-20">
+            <!-- Gambar akan diisi via JavaScript -->
+        </div>
+    </div>
+</div>
+
+<div id="modal-room" 
+     onclick="closeRoom()" 
+     class="fixed inset-0 z-[200] hidden bg-black/95 backdrop-blur-xl overflow-y-auto cursor-pointer">
+    
+    <!-- WRAPPER KONTEN -->
+    <!-- stopPropagation dihapus dari sini agar klik pada judul/area kosong tetap menutup modal -->
+    <div class="min-h-full w-full py-12 px-6 flex flex-col items-center">
+        
+        <!-- JUDUL DINAMIS -->
+        <!-- Klik di sini sekarang akan menutup modal (out) -->
+        <div class="max-w-4xl w-full text-center mb-10">
+            <h2 id="room-title" class="text-white text-2xl md:text-4xl font-black uppercase tracking-widest leading-tight"></h2>
+            <div class="h-1 w-20 bg-yellow-500 mx-auto mt-4"></div>
+        </div>
+
+        <!-- CONTAINER GAMBAR -->
+        <div id="room-images" class="max-w-5xl w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pb-20">
+            <!-- Gambar akan diisi via JavaScript -->
+        </div>
+    </div>
+</div>
+
+<div id="modal-living" 
+     onclick="closeLiving()" 
+     class="fixed inset-0 z-[200] hidden bg-black/95 backdrop-blur-xl overflow-y-auto cursor-pointer">
+    
+    <!-- WRAPPER KONTEN -->
+    <!-- stopPropagation dihapus dari sini agar klik pada judul/area kosong tetap menutup modal -->
+    <div class="min-h-full w-full py-12 px-6 flex flex-col items-center">
+        
+        <!-- JUDUL DINAMIS -->
+        <!-- Klik di sini sekarang akan menutup modal (out) -->
+        <div class="max-w-4xl w-full text-center mb-10">
+            <h2 id="living-title" class="text-white text-2xl md:text-4xl font-black uppercase tracking-widest leading-tight"></h2>
+            <div class="h-1 w-20 bg-yellow-500 mx-auto mt-4"></div>
+        </div>
+
+        <!-- CONTAINER GAMBAR -->
+        <div id="living-images" class="max-w-5xl w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pb-20">
+            <!-- Gambar akan diisi via JavaScript -->
+        </div>
+    </div>
+</div>
+
+<div id="modal-cosmetic" 
+     onclick="closeCosmetic()" 
+     class="fixed inset-0 z-[200] hidden bg-black/95 backdrop-blur-xl overflow-y-auto cursor-pointer">
+    
+    <!-- WRAPPER KONTEN -->
+    <!-- stopPropagation dihapus dari sini agar klik pada judul/area kosong tetap menutup modal -->
+    <div class="min-h-full w-full py-12 px-6 flex flex-col items-center">
+        
+        <!-- JUDUL DINAMIS -->
+        <!-- Klik di sini sekarang akan menutup modal (out) -->
+        <div class="max-w-4xl w-full text-center mb-10">
+            <h2 id="cosmetic-title" class="text-white text-2xl md:text-4xl font-black uppercase tracking-widest leading-tight"></h2>
+            <div class="h-1 w-20 bg-yellow-500 mx-auto mt-4"></div>
+        </div>
+
+        <!-- CONTAINER GAMBAR -->
+        <div id="cosmetic-images" class="max-w-5xl w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pb-20">
+            <!-- Gambar akan diisi via JavaScript -->
+        </div>
+    </div>
+</div>
+
+<div id="modal-office" 
+     onclick="closeOffice()" 
+     class="fixed inset-0 z-[200] hidden bg-black/95 backdrop-blur-xl overflow-y-auto cursor-pointer">
+    
+    <!-- WRAPPER KONTEN -->
+    <!-- stopPropagation dihapus dari sini agar klik pada judul/area kosong tetap menutup modal -->
+    <div class="min-h-full w-full py-12 px-6 flex flex-col items-center">
+        
+        <!-- JUDUL DINAMIS -->
+        <!-- Klik di sini sekarang akan menutup modal (out) -->
+        <div class="max-w-4xl w-full text-center mb-10">
+            <h2 id="office-title" class="text-white text-2xl md:text-4xl font-black uppercase tracking-widest leading-tight"></h2>
+            <div class="h-1 w-20 bg-yellow-500 mx-auto mt-4"></div>
+        </div>
+
+        <!-- CONTAINER GAMBAR -->
+        <div id="office-images" class="max-w-5xl w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pb-20">
+            <!-- Gambar akan diisi via JavaScript -->
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
